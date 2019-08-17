@@ -94,11 +94,29 @@ namespace WebEstudiante.Estudiantes {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Estudiantes.IEstudiantes")]
     public interface IEstudiantes {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEstudiantes/CrearActividad", ReplyAction="http://tempuri.org/IEstudiantes/CrearActividadResponse")]
-        WebEstudiante.Estudiantes.Estudiante CrearActividad(WebEstudiante.Estudiantes.Estudiante std);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEstudiantes/Crear", ReplyAction="http://tempuri.org/IEstudiantes/CrearResponse")]
+        WebEstudiante.Estudiantes.Estudiante Crear(WebEstudiante.Estudiantes.Estudiante std);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEstudiantes/CrearActividad", ReplyAction="http://tempuri.org/IEstudiantes/CrearActividadResponse")]
-        System.Threading.Tasks.Task<WebEstudiante.Estudiantes.Estudiante> CrearActividadAsync(WebEstudiante.Estudiantes.Estudiante std);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEstudiantes/Crear", ReplyAction="http://tempuri.org/IEstudiantes/CrearResponse")]
+        System.Threading.Tasks.Task<WebEstudiante.Estudiantes.Estudiante> CrearAsync(WebEstudiante.Estudiantes.Estudiante std);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEstudiantes/InsertarNota", ReplyAction="http://tempuri.org/IEstudiantes/InsertarNotaResponse")]
+        WebEstudiante.Estudiantes.Estudiante InsertarNota(WebEstudiante.Estudiantes.Estudiante std);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEstudiantes/InsertarNota", ReplyAction="http://tempuri.org/IEstudiantes/InsertarNotaResponse")]
+        System.Threading.Tasks.Task<WebEstudiante.Estudiantes.Estudiante> InsertarNotaAsync(WebEstudiante.Estudiantes.Estudiante std);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEstudiantes/ObtenerEstudiantes", ReplyAction="http://tempuri.org/IEstudiantes/ObtenerEstudiantesResponse")]
+        WebEstudiante.Estudiantes.Estudiante[] ObtenerEstudiantes();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEstudiantes/ObtenerEstudiantes", ReplyAction="http://tempuri.org/IEstudiantes/ObtenerEstudiantesResponse")]
+        System.Threading.Tasks.Task<WebEstudiante.Estudiantes.Estudiante[]> ObtenerEstudiantesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEstudiantes/ObtenerEstudiante", ReplyAction="http://tempuri.org/IEstudiantes/ObtenerEstudianteResponse")]
+        WebEstudiante.Estudiantes.Estudiante ObtenerEstudiante();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEstudiantes/ObtenerEstudiante", ReplyAction="http://tempuri.org/IEstudiantes/ObtenerEstudianteResponse")]
+        System.Threading.Tasks.Task<WebEstudiante.Estudiantes.Estudiante> ObtenerEstudianteAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEstudiantes/ObtenerMaxMin", ReplyAction="http://tempuri.org/IEstudiantes/ObtenerMaxMinResponse")]
         WebEstudiante.Estudiantes.Estudiante[] ObtenerMaxMin();
@@ -107,10 +125,10 @@ namespace WebEstudiante.Estudiantes {
         System.Threading.Tasks.Task<WebEstudiante.Estudiantes.Estudiante[]> ObtenerMaxMinAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEstudiantes/ConsultarPromedio", ReplyAction="http://tempuri.org/IEstudiantes/ConsultarPromedioResponse")]
-        WebEstudiante.Estudiantes.Estudiante[] ConsultarPromedio();
+        int ConsultarPromedio();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEstudiantes/ConsultarPromedio", ReplyAction="http://tempuri.org/IEstudiantes/ConsultarPromedioResponse")]
-        System.Threading.Tasks.Task<WebEstudiante.Estudiantes.Estudiante[]> ConsultarPromedioAsync();
+        System.Threading.Tasks.Task<int> ConsultarPromedioAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -140,12 +158,36 @@ namespace WebEstudiante.Estudiantes {
                 base(binding, remoteAddress) {
         }
         
-        public WebEstudiante.Estudiantes.Estudiante CrearActividad(WebEstudiante.Estudiantes.Estudiante std) {
-            return base.Channel.CrearActividad(std);
+        public WebEstudiante.Estudiantes.Estudiante Crear(WebEstudiante.Estudiantes.Estudiante std) {
+            return base.Channel.Crear(std);
         }
         
-        public System.Threading.Tasks.Task<WebEstudiante.Estudiantes.Estudiante> CrearActividadAsync(WebEstudiante.Estudiantes.Estudiante std) {
-            return base.Channel.CrearActividadAsync(std);
+        public System.Threading.Tasks.Task<WebEstudiante.Estudiantes.Estudiante> CrearAsync(WebEstudiante.Estudiantes.Estudiante std) {
+            return base.Channel.CrearAsync(std);
+        }
+        
+        public WebEstudiante.Estudiantes.Estudiante InsertarNota(WebEstudiante.Estudiantes.Estudiante std) {
+            return base.Channel.InsertarNota(std);
+        }
+        
+        public System.Threading.Tasks.Task<WebEstudiante.Estudiantes.Estudiante> InsertarNotaAsync(WebEstudiante.Estudiantes.Estudiante std) {
+            return base.Channel.InsertarNotaAsync(std);
+        }
+        
+        public WebEstudiante.Estudiantes.Estudiante[] ObtenerEstudiantes() {
+            return base.Channel.ObtenerEstudiantes();
+        }
+        
+        public System.Threading.Tasks.Task<WebEstudiante.Estudiantes.Estudiante[]> ObtenerEstudiantesAsync() {
+            return base.Channel.ObtenerEstudiantesAsync();
+        }
+        
+        public WebEstudiante.Estudiantes.Estudiante ObtenerEstudiante() {
+            return base.Channel.ObtenerEstudiante();
+        }
+        
+        public System.Threading.Tasks.Task<WebEstudiante.Estudiantes.Estudiante> ObtenerEstudianteAsync() {
+            return base.Channel.ObtenerEstudianteAsync();
         }
         
         public WebEstudiante.Estudiantes.Estudiante[] ObtenerMaxMin() {
@@ -156,11 +198,11 @@ namespace WebEstudiante.Estudiantes {
             return base.Channel.ObtenerMaxMinAsync();
         }
         
-        public WebEstudiante.Estudiantes.Estudiante[] ConsultarPromedio() {
+        public int ConsultarPromedio() {
             return base.Channel.ConsultarPromedio();
         }
         
-        public System.Threading.Tasks.Task<WebEstudiante.Estudiantes.Estudiante[]> ConsultarPromedioAsync() {
+        public System.Threading.Tasks.Task<int> ConsultarPromedioAsync() {
             return base.Channel.ConsultarPromedioAsync();
         }
     }

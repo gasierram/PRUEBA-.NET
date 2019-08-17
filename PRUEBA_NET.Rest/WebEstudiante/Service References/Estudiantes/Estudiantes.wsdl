@@ -7,11 +7,29 @@
       <xsd:import schemaLocation="http://localhost:63118/Estudiantes.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/PRUEBA_NET.Rest.Dominio" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IEstudiantes_CrearActividad_InputMessage">
-    <wsdl:part name="parameters" element="tns:CrearActividad" />
+  <wsdl:message name="IEstudiantes_Crear_InputMessage">
+    <wsdl:part name="parameters" element="tns:Crear" />
   </wsdl:message>
-  <wsdl:message name="IEstudiantes_CrearActividad_OutputMessage">
-    <wsdl:part name="parameters" element="tns:CrearActividadResponse" />
+  <wsdl:message name="IEstudiantes_Crear_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CrearResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEstudiantes_InsertarNota_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertarNota" />
+  </wsdl:message>
+  <wsdl:message name="IEstudiantes_InsertarNota_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertarNotaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEstudiantes_ObtenerEstudiantes_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerEstudiantes" />
+  </wsdl:message>
+  <wsdl:message name="IEstudiantes_ObtenerEstudiantes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerEstudiantesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEstudiantes_ObtenerEstudiante_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerEstudiante" />
+  </wsdl:message>
+  <wsdl:message name="IEstudiantes_ObtenerEstudiante_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerEstudianteResponse" />
   </wsdl:message>
   <wsdl:message name="IEstudiantes_ObtenerMaxMin_InputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerMaxMin" />
@@ -26,9 +44,21 @@
     <wsdl:part name="parameters" element="tns:ConsultarPromedioResponse" />
   </wsdl:message>
   <wsdl:portType name="IEstudiantes">
-    <wsdl:operation name="CrearActividad">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEstudiantes/CrearActividad" message="tns:IEstudiantes_CrearActividad_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEstudiantes/CrearActividadResponse" message="tns:IEstudiantes_CrearActividad_OutputMessage" />
+    <wsdl:operation name="Crear">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEstudiantes/Crear" message="tns:IEstudiantes_Crear_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEstudiantes/CrearResponse" message="tns:IEstudiantes_Crear_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertarNota">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEstudiantes/InsertarNota" message="tns:IEstudiantes_InsertarNota_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEstudiantes/InsertarNotaResponse" message="tns:IEstudiantes_InsertarNota_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerEstudiantes">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEstudiantes/ObtenerEstudiantes" message="tns:IEstudiantes_ObtenerEstudiantes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEstudiantes/ObtenerEstudiantesResponse" message="tns:IEstudiantes_ObtenerEstudiantes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerEstudiante">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEstudiantes/ObtenerEstudiante" message="tns:IEstudiantes_ObtenerEstudiante_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEstudiantes/ObtenerEstudianteResponse" message="tns:IEstudiantes_ObtenerEstudiante_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ObtenerMaxMin">
       <wsdl:input wsaw:Action="http://tempuri.org/IEstudiantes/ObtenerMaxMin" message="tns:IEstudiantes_ObtenerMaxMin_InputMessage" />
@@ -39,39 +69,5 @@
       <wsdl:output wsaw:Action="http://tempuri.org/IEstudiantes/ConsultarPromedioResponse" message="tns:IEstudiantes_ConsultarPromedio_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="BasicHttpBinding_IEstudiantes" type="tns:IEstudiantes">
-    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="CrearActividad">
-      <soap:operation soapAction="http://tempuri.org/IEstudiantes/CrearActividad" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ObtenerMaxMin">
-      <soap:operation soapAction="http://tempuri.org/IEstudiantes/ObtenerMaxMin" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ConsultarPromedio">
-      <soap:operation soapAction="http://tempuri.org/IEstudiantes/ConsultarPromedio" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-  </wsdl:binding>
-  <wsdl:service name="Estudiantes">
-    <wsdl:port name="BasicHttpBinding_IEstudiantes" binding="tns:BasicHttpBinding_IEstudiantes">
-      <soap:address location="http://localhost:63118/Estudiantes.svc" />
-    </wsdl:port>
-  </wsdl:service>
+  <wsdl:service name="Estudiantes" />
 </wsdl:definitions>

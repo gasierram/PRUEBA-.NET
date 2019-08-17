@@ -33,19 +33,45 @@ namespace PRUEBA_NET.Rest
             return estudianteDAO.Crear(std);
         }
 
-        List<Estudiante> IEstudiantes.ConsultarPromedio()
+        int IEstudiantes.ConsultarPromedio()
+        {
+            return estudianteDAO.ConsultarPromedio();
+        }
+
+        Estudiante IEstudiantes.Crear(Estudiante std)
         {
             throw new NotImplementedException();
         }
 
-        Estudiante IEstudiantes.CrearActividad(Estudiante std)
+        Estudiante IEstudiantes.InsertarNota(int Id, int Nota)
+        {
+            return estudianteDAO.InsertarNota(Id, Nota);
+        }
+
+        Estudiante IEstudiantes.ObtenerEstudiante()
         {
             throw new NotImplementedException();
+        }
+
+        List<Estudiante> IEstudiantes.ObtenerEstudiantes()
+        {
+            //List<Estudiante> stdExistente = estudianteDAO.ObtenerEstudiantes();
+            //if (stdExistente != null)
+            //{
+            //    throw new WebFaultException<EstudianteException>(new EstudianteException()
+            //    {
+            //        Codigo = 101,
+            //        Descripcion = "Estudiante no existe"
+            //    }, HttpStatusCode.Conflict);
+            //}
+
+            return estudianteDAO.ObtenerEstudiantes();
         }
 
         List<Estudiante> IEstudiantes.ObtenerMaxMin()
         {
-            throw new NotImplementedException();
+
+            return estudianteDAO.ObtenerMaxMin();
         }
     }
 }

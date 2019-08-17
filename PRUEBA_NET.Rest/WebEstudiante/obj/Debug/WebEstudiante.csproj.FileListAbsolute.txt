@@ -28,6 +28,11 @@ c:\users\alejandro\documents\visual studio 2015\Projects\PRUEBA_NET.Rest\WebEstu
 c:\users\alejandro\documents\visual studio 2015\Projects\PRUEBA_NET.Rest\WebEstudiante\bin\Microsoft.AI.WindowsServer.xml
 c:\users\alejandro\documents\visual studio 2015\Projects\PRUEBA_NET.Rest\WebEstudiante\bin\Microsoft.ApplicationInsights.xml
 c:\users\alejandro\documents\visual studio 2015\Projects\PRUEBA_NET.Rest\WebEstudiante\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-c:\users\alejandro\documents\visual studio 2015\Projects\PRUEBA_NET.Rest\WebEstudiante\obj\Debug\WebEstudiante.csprojResolveAssemblyReference.cache
 c:\users\alejandro\documents\visual studio 2015\Projects\PRUEBA_NET.Rest\WebEstudiante\obj\Debug\WebEstudiante.dll
 c:\users\alejandro\documents\visual studio 2015\Projects\PRUEBA_NET.Rest\WebEstudiante\obj\Debug\WebEstudiante.pdb
+C:\Users\Alejandro\Documents\Visual Studio 2015\Projects\PRUEBA_NET.Rest\WebEstudiante\bin\Microsoft.AspNet.TelemetryCorrelation.dll
+C:\Users\Alejandro\Documents\Visual Studio 2015\Projects\PRUEBA_NET.Rest\WebEstudiante\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Alejandro\Documents\Visual Studio 2015\Projects\PRUEBA_NET.Rest\WebEstudiante\bin\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Alejandro\Documents\Visual Studio 2015\Projects\PRUEBA_NET.Rest\WebEstudiante\bin\Microsoft.AI.PerfCounterCollector.xml
+C:\Users\Alejandro\Documents\Visual Studio 2015\Projects\PRUEBA_NET.Rest\WebEstudiante\bin\Microsoft.AspNet.TelemetryCorrelation.xml
+C:\Users\Alejandro\Documents\Visual Studio 2015\Projects\PRUEBA_NET.Rest\WebEstudiante\bin\System.Diagnostics.DiagnosticSource.xml

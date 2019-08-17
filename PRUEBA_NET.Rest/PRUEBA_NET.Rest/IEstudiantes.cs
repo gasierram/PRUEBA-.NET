@@ -14,15 +14,39 @@ namespace PRUEBA_NET.Rest
     public interface IEstudiantes
     {
         [OperationContract]
-        [WebInvoke(Method = "POST", UriTemplate = "Estudiantes", ResponseFormat = WebMessageFormat.Json)]
-        Estudiante CrearActividad(Estudiante std);
+        [WebInvoke(Method = "POST", UriTemplate = "Estudiantes", ResponseFormat = WebMessageFormat.Json,
+    RequestFormat = WebMessageFormat.Json,
+    BodyStyle = WebMessageBodyStyle.Bare)]
+        Estudiante Crear(Estudiante std);
 
         [OperationContract]
-        [WebInvoke(Method = "GET", UriTemplate = "Notas", ResponseFormat = WebMessageFormat.Json)]
+        [WebInvoke(Method = "POST", UriTemplate = "InsertarNota", ResponseFormat = WebMessageFormat.Json,
+    RequestFormat = WebMessageFormat.Json,
+    BodyStyle = WebMessageBodyStyle.Wrapped)]
+        Estudiante InsertarNota(int Id, int Nota);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", UriTemplate = "ObtenerEstudiantes", ResponseFormat = WebMessageFormat.Json,
+    RequestFormat = WebMessageFormat.Json,
+    BodyStyle = WebMessageBodyStyle.Bare)]
+        List<Estudiante> ObtenerEstudiantes();
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", UriTemplate = "ObtenerEstudiante", ResponseFormat = WebMessageFormat.Json,
+    RequestFormat = WebMessageFormat.Json,
+    BodyStyle = WebMessageBodyStyle.Bare)]
+        Estudiante ObtenerEstudiante();
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", UriTemplate = "Notas", ResponseFormat = WebMessageFormat.Json,
+    RequestFormat = WebMessageFormat.Json,
+    BodyStyle = WebMessageBodyStyle.Bare)]
         List<Estudiante> ObtenerMaxMin();
 
         [OperationContract]
-        [WebInvoke(Method = "GET", UriTemplate = "Promedios", ResponseFormat = WebMessageFormat.Json)]
-        List<Estudiante> ConsultarPromedio();
+        [WebInvoke(Method = "GET", UriTemplate = "Promedios", ResponseFormat = WebMessageFormat.Json,
+    RequestFormat = WebMessageFormat.Json,
+    BodyStyle = WebMessageBodyStyle.Bare)]
+        int ConsultarPromedio();
     }
 }

@@ -10,12 +10,12 @@ namespace PRUEBA_NET.Rest.Persistencia
 {
     public class EstudianteDAO
     {
-        private string CadenaConexion = "Data Source=(local);Initial Catalog=PRUEBA_NET;User ID=alejo;Password=12345;";
+        private string CadenaConexion = "Data Source=DESKTOP-ENV3J53\\SQLEXPRESS;Initial Catalog=PRUEBA_NET;User ID=sa;Password=12345;";
         public Estudiante Crear(Estudiante std)
         {
             Estudiante estudiante = null;
-            string sql = "Insert into estudiante (Nombre, Nota, Id) " +
-                "values(@Nombre, @Nota, @Id)";
+            string sql = "Insert into Estudiante (Nombre, Nota)" +
+                "values(@Nombre, @Nota)";
             using (SqlConnection conexion = new SqlConnection(CadenaConexion))
             {
                 conexion.Open();
@@ -23,22 +23,129 @@ namespace PRUEBA_NET.Rest.Persistencia
                 {
                     comando.Parameters.Add(new SqlParameter("@Nombre", estudiante.Nombre));
                     comando.Parameters.Add(new SqlParameter("@Nota", estudiante.Nota));
-                    comando.Parameters.Add(new SqlParameter("@Id", estudiante.Id));
                     comando.ExecuteNonQuery();
                 }
             }
             estudiante = ObtenerMaxMin()[0];
             return estudiante;
         }
-        public List<Estudiante> ObtenerMaxMin()
+
+        public Estudiante InsertarNota(int Id, int Nota)
         {
-            List<Estudiante> encontrado = new List<Estudiante>();
-            Estudiante std = null;
-            string sql = "select MIN(Nota) AS 'Minimo', MAX(Nota) AS 'Maximo' from Estudiante ";
+            Estudiante estudiante = null;
+            string sql = "UPDATE Estudiante SET Nota = @Nota WHERE Id = @Id";
             using (SqlConnection conexion = new SqlConnection(CadenaConexion))
             {
                 conexion.Open();
                 using (SqlCommand comando = new SqlCommand(sql, conexion))
+                {
+                    comando.Parameters.Add(new SqlParameter("@Id", Id));
+                    comando.Parameters.Add(new SqlParameter("@Nota", Nota));
+                    comando.ExecuteNonQuery();
+                }
+            }
+            estudiante = ObtenerEstudiante(Id);
+            return estudiante;
+        }
+
+        public List<Estudiante> ObtenerEstudiantes()
+        {
+            List<Estudiante> encontrados = new List<Estudiante>();
+            Estudiante std = null;
+            string sql = "select * from Estudiante ";
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            {
+                conexion.Open();
+                using (SqlCommand comando = new SqlCommand(sql, conexion))
+                {
+                    //comando.Parameters.Add(new SqlParameter("@Id", Id));
+                    using (SqlDataReader resultado = comando.ExecuteReader())
+                    {
+                        if (resultado.Read())
+                        {
+                            while (resultado.Read())
+                            {
+
+                                std = new Estudiante()
+                                {
+                                    Nombre = (string)resultado["Nombre"],
+                                    Nota = (int)resultado["Nota"],
+                                    Id = (int)resultado["Id"],
+                                };
+                                encontrados.Add(std);
+                            }
+                        }
+                    }
+                }
+
+            }
+            return encontrados;
+        }
+
+        public Estudiante ObtenerEstudiante(int Id)
+        {
+            Estudiante std = null;
+            string sql = "select * from Estudiante where Id = @Id";
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            {
+                conexion.Open();
+                using (SqlCommand comando = new SqlCommand(sql, conexion))
+                {
+                    comando.Parameters.Add(new SqlParameter("@Id", Id));
+                    using (SqlDataReader resultado = comando.ExecuteReader())
+                    {
+                        if (resultado.Read())
+                        {
+
+                            std = new Estudiante()
+                            {
+                                Nombre = (string)resultado["Nombre"],
+                                Nota = (int)resultado["Nota"],
+                                Id = (int)resultado["Id"],
+                            };
+                        }
+                    }
+                }
+
+            }
+            return std;
+        }
+
+
+        public List<Estudiante> ObtenerMaxMin()
+        {
+            List<Estudiante> encontrado = new List<Estudiante>();
+            Estudiante std = null;
+            string sql = "SELECT * FROM Estudiante WHERE  Nota = (SELECT TOP 1 MAX(Nota) from Estudiante)";
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            {
+                conexion.Open();
+                using (SqlCommand comando = new SqlCommand(sql, conexion))
+                {
+                    //comando.Parameters.Add(new SqlParameter("@Nota", estudiante.Nombre));
+                    using (SqlDataReader resultado = comando.ExecuteReader())
+                    {
+                        if (resultado.Read())
+                        {
+
+                            std = new Estudiante()
+                            {
+                                Nombre = (string)resultado["Nombre"],
+                                Nota = (int)resultado["Nota"],
+                                Id = (int)resultado["Id"],
+                            };
+                            encontrado.Add(std);
+                        }
+                    }
+                }
+
+            }
+            string sql2 = "SELECT * FROM Estudiante WHERE  Nota = (SELECT TOP 1 MIN(Nota) from Estudiante)";
+
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            {
+                conexion.Open();
+                using (SqlCommand comando = new SqlCommand(sql2, conexion))
                 {
                     //comando.Parameters.Add(new SqlParameter("@Id", Id));
                     using (SqlDataReader resultado = comando.ExecuteReader())
@@ -58,14 +165,14 @@ namespace PRUEBA_NET.Rest.Persistencia
                 }
 
             }
+
             return encontrado;
         }
 
-        public List<Estudiante> ConsultarPromedio()
+        public int ConsultarPromedio()
         {
-            List<Estudiante> promedios = new List<Estudiante>();
-            Estudiante estudiante = null;
-            string sql = "select AVG(Nota) AS 'Promedio Notas', FROM Estudiante";
+            int nota = new int();
+            string sql = "select AVG(Nota) AS 'Promedio Notas' FROM Estudiante";
             using (SqlConnection conexion = new SqlConnection(CadenaConexion))
             {
                 conexion.Open();
@@ -76,19 +183,13 @@ namespace PRUEBA_NET.Rest.Persistencia
                     {
                         while (resultado.Read())
                         {
-                            estudiante = new Estudiante()
-                            {
-                                Nombre = (string)resultado["Nombre"],
-                                Nota = (int)resultado["Nota"],
-                                Id = (int)resultado["Id"],
-                            };
-                            promedios.Add(estudiante);
+                            nota = (int)resultado["Promedio Notas"];
                         }
                     }
                 }
 
             }
-            return promedios;
+            return nota;
         }
     }
 }
